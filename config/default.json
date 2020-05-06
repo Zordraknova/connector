@@ -1,0 +1,4 @@
+{
+"mongoURI" : "mongodb://root:root@localhost:127.0.0.1:27017/connect" ,
+"jwtSecret" : "15gkLLon47"
+}
