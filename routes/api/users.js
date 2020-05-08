@@ -27,7 +27,7 @@ const User = require('../../models/Users');
         
         try{
             let user = await User.findOne({ email });
-              res.send('User route');
+              res.send('USER REG');
 
             if (user){
                  return res.status(400).json ({ errors: [{ msg: 'User is already exist'}] }); 
