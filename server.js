@@ -68,7 +68,7 @@ mongoose.Promise = global.Promise;
 
 //==========logger
 if (app.get('env') == 'production') {
-    app.use(morgan('common', { skip: function(req, res) { return res.statusCode < 400 },
+    app.use(morgan('common', { skip: function(req, res) { return res.statusCode < 400; },
      stream: __dirname + './log//morgan.log' }));
   } else {
     app.use(morgan('dev'));

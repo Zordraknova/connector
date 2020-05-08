@@ -16,23 +16,24 @@ const User = require('../../models/Users');
         check('email', 'Need valid @mail').isEmail(),
         check('password', '6 or more symbols').isLength({min:6})
     ],
-        async (req, res) => {
-    const errors =validationResult(req);
+    async (req, res) => {
+      const errors =validationResult(req);
 
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
             console.log(req.body); //===================================================================
+    
     const { name,email,password } = req.body;
         
         try{
             let user = await User.findOne({ email });
-              res.send('USER REG');
+              
 
             if (user){
-                 return res.status(400).json ({ errors: [{ msg: 'User is already exist'}] }); 
+             res.status(400).json ({ errors: [{ msg: 'User is already exist'}] }); 
             }
-        
+           
     const avatar = gravatar.url(email,{
           s: '200',
           r: 'pg',
@@ -48,8 +49,10 @@ const User = require('../../models/Users');
         
 
     const salt = await bcrypt.genSalt(10);
-         user.password = await bcrypt.hash(password, salt);
-         await user.save();
+        
+    user.password = await bcrypt.hash(password, salt);
+        
+    await user.save();
 
     const payload = {
         user:{
@@ -63,17 +66,17 @@ const User = require('../../models/Users');
         { expiresIn: 360000 },
             (err,token) => {
                 if (err) throw err;
-              return  res.json({ token });
+                res.json({ token });
             });
       
 
-
+    res.send('User register');
         
-        }catch(err){
+    }catch(err){
     console.log(err.message);
 
     // return res.status(500).send('Server error');
-    return res.status (500);
+   res.status(500).send('Server error');;
         }
         
     });
