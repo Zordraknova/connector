@@ -70,7 +70,7 @@ const User = require('../../models/Users');
             });
       
 
-    res.send('User register');
+ 
         
     }catch(err){
     console.log(err.message);
@@ -82,3 +82,6 @@ const User = require('../../models/Users');
     });
 
 module.exports = router;
+
+
+// this 14.55
