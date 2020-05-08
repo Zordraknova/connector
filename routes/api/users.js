@@ -75,8 +75,8 @@ const User = require('../../models/Users');
     }catch(err){
     console.log(err.message);
 
-    // return res.status(500).send('Server error');
-   res.status(500).send('Server error');;
+
+   res.status(500).send('Server error');
         }
         
     });
